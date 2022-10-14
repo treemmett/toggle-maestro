@@ -1,0 +1,6 @@
+#!include:.gitignore
+.gitignore
+.husky/
+*.ico
+.prettierignore
+yarn.lock

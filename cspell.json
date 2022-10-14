@@ -1,0 +1,9 @@
+{
+  "version": "0.2",
+  "ignorePaths": [],
+  "dictionaryDefinitions": [],
+  "dictionaries": ["typescript"],
+  "words": ["commitlint", "csstree", "stylelint", "treemmett", "tsbuildinfo", "vercel"],
+  "ignoreWords": [],
+  "import": []
+}
