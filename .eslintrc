@@ -1,3 +1,6 @@
 {
-  "extends": "treemmett/next"
+  "extends": "treemmett/next",
+  "rules": {
+    "max-classes-per-file": 0
+  }
 }
