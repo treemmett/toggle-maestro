@@ -1,3 +1,4 @@
+import axios from 'axios';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
@@ -40,6 +41,16 @@ const Home: NextPage = () => {
     }, 100);
   }, [authorizing]);
 
+  const [value, setValue] = useState('');
+  const save = useCallback(async () => {
+    await axios.post(
+      '/api/flag',
+      { id: value },
+      { headers: { authorization: `Bearer ${localStorage.getItem('token')}` } }
+    );
+    setValue('');
+  }, [value]);
+
   return (
     <div className={styles.container}>
       <Head>
@@ -59,6 +70,12 @@ const Home: NextPage = () => {
 
         <button disabled={authorizing} onClick={login} type="button">
           Login with GitHub
+        </button>
+
+        <input onChange={(e) => setValue(e.currentTarget.value)} value={value} />
+
+        <button onClick={save} type="button">
+          Save
         </button>
 
         <div className={styles.grid}>
