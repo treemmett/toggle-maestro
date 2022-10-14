@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { EncryptJWT } from 'jose';
 import { Config } from '../../utils/config';
 import { nc } from '../../utils/nc';
 
@@ -36,29 +35,8 @@ export default nc().post(async (req, res) => {
     throw new AuthenticationError(authResponse.data.error);
   }
 
-  const { status, data } = await axios.get('https://api.github.com/user', {
-    headers: {
-      Accept: 'application/json',
-      Authorization: `token ${authResponse.data.access_token}`,
-    },
-    validateStatus: () => true,
-  });
-
-  if (status !== 200) {
-    throw new AuthenticationError();
-  }
-
-  const expiration = new Date();
-  expiration.setDate(expiration.getDate() + Config.NODE_ENV === 'production' ? 1 : 365);
-
-  const token = await new EncryptJWT({ access_token: authResponse.data.access_token })
-    .setProtectedHeader({ alg: 'dir', enc: 'A256GCM' })
-    .setExpirationTime(Math.floor(expiration.getTime() / 1000))
-    .setSubject(data.login)
-    .setIssuedAt()
-    .encrypt(Config.JWT_KEY);
-
-  res.setHeader('Content-Type', 'application/json').send({
-    accessToken: token,
+  // TODO encrypt access key
+  res.send({
+    accessToken: authResponse.data.access_token,
   });
 });
