@@ -2,6 +2,7 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
 import { useCallback, useState } from 'react';
+import { List } from '../components/List';
 import styles from '../styles/Home.module.css';
 import { client } from '../utils/apiClient';
 import { Config } from '../utils/config';
@@ -73,6 +74,8 @@ const Home: NextPage = () => {
         <button onClick={save} type="button">
           Save
         </button>
+
+        <List />
 
         <div className={styles.grid}>
           <a className={styles.card} href="https://nextjs.org/docs">
