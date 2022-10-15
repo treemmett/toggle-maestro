@@ -1,4 +1,4 @@
-import { Manifest } from '../../entities/Manifest';
+import { ManifestService } from '../../entities/ManifestService';
 import { nc } from '../../utils/nc';
 
 export class AuthorizationError extends Error {}
@@ -9,7 +9,7 @@ export default nc()
       throw new AuthorizationError();
     }
 
-    const manifest = await Manifest.getManifest(req.session);
+    const manifest = await ManifestService.getManifest(req.session);
     res.send(manifest);
   })
   .post(async (req, res) => {
@@ -18,7 +18,7 @@ export default nc()
       throw new AuthorizationError();
     }
 
-    const manifest = await Manifest.getManifest(req.session);
+    const manifest = await ManifestService.getManifest(req.session);
     manifest.createFlag(id);
     await manifest.write(req.session);
     res.send(manifest);

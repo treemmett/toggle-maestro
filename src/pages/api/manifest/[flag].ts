@@ -1,4 +1,4 @@
-import { Manifest } from '../../../entities/Manifest';
+import { ManifestService } from '../../../entities/ManifestService';
 import { AuthorizationError } from '../../../middleware/auth';
 import { nc } from '../../../utils/nc';
 import { toString } from '../../../utils/query';
@@ -16,7 +16,7 @@ export default nc().patch(async (req, res) => {
   if (!flag) throw new BadUserInput();
   if (typeof enabled !== 'boolean') throw new BadUserInput();
 
-  const manifest = await Manifest.getManifest(req.session);
+  const manifest = await ManifestService.getManifest(req.session);
   manifest.updateFlag(flag, enabled);
   await manifest.write(req.session);
   res.send(manifest);
