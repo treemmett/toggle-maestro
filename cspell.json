@@ -3,7 +3,7 @@
   "ignorePaths": [],
   "dictionaryDefinitions": [],
   "dictionaries": ["typescript"],
-  "words": ["commitlint", "csstree", "stylelint", "treemmett", "tsbuildinfo", "vercel"],
+  "words": ["commitlint", "csstree", "stylelint", "treemmett", "tregan", "tsbuildinfo", "vercel"],
   "ignoreWords": [],
   "import": []
 }
