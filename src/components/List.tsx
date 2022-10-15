@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { useManifest } from '../utils/fetchers';
+import styles from './List.module.scss';
 
 export const List: FC = () => {
   const { data, error, updateFlag } = useManifest();
@@ -13,17 +14,18 @@ export const List: FC = () => {
   }
 
   return (
-    <ul>
+    <div className={styles.grid}>
       {Object.entries(data.flags).map(([flag, enabled]) => (
-        <li key={flag}>
+        <label className={styles.card} htmlFor={`flag-${flag}`} key={flag}>
           <span>{flag}</span>
           <input
             checked={enabled}
+            id={`flag-${flag}`}
             onChange={(e) => updateFlag(flag, e.currentTarget.checked)}
             type="checkbox"
           />
-        </li>
+        </label>
       ))}
-    </ul>
+    </div>
   );
 };
