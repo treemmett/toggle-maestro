@@ -5,12 +5,11 @@ export class AuthorizationError extends Error {}
 
 export default nc().post(async (req, res) => {
   const { id } = req.body;
-  const token = req.headers.authorization?.split(' ')?.[1];
-  if (!token) {
+  if (!req.session) {
     throw new AuthorizationError();
   }
 
-  const manifest = await Manifest.getManifest(token);
+  const manifest = await Manifest.getManifest(req.session);
   manifest.createFlag(id);
   res.send(manifest);
 });
