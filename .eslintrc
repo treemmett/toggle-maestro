@@ -1,5 +1,6 @@
 {
   "extends": "treemmett/next",
+  "root": true,
   "rules": {
     "max-classes-per-file": 0,
     "react/jsx-key": 2
