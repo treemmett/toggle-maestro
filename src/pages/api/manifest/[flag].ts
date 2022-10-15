@@ -11,7 +11,7 @@ export default nc().patch(async (req, res) => {
   }
 
   const flag = toString(req.query.flag);
-  const { enabled } = req.body.enabled;
+  const { enabled } = req.body;
 
   if (!flag) throw new BadUserInput();
   if (typeof enabled !== 'boolean') throw new BadUserInput();
