@@ -44,7 +44,7 @@ const Home: NextPage = () => {
   const [value, setValue] = useState('');
   const save = useCallback(async () => {
     await axios.post(
-      '/api/flag',
+      '/api/manifest',
       { id: value },
       { headers: { authorization: `Bearer ${localStorage.getItem('token')}` } }
     );
