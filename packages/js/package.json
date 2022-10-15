@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "repository": "https://github.com/github:treemmett/toggle-maestro",
   "author": "Tregan <tregan@tregan.me>",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "private": true,
   "scripts": {
     "test": "jest"

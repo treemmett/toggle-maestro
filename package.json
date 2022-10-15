@@ -1,6 +1,7 @@
 {
   "name": "toggle-maestro",
   "description": "Toggle those features, with finesse",
+  "license": "MIT",
   "private": true,
   "scripts": {
     "build": "lerna run build",

@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "description": "Toggle those features, with finesse",
+  "license": "MIT",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
