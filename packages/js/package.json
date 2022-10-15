@@ -1,0 +1,16 @@
+{
+  "name": "toggle-maestro",
+  "version": "0.1.0",
+  "description": "Toggle those features, with finesse",
+  "main": "dist/index.js",
+  "repository": "https://github.com/github:treemmett/toggle-maestro",
+  "author": "Tregan <tregan@tregan.me>",
+  "license": "UNLICENSED",
+  "private": true,
+  "devDependencies": {
+    "react": "^18.2.0"
+  },
+  "peerDependencies": {
+    "react": "^16.8 || ^17.0 || ^18.0"
+  }
+}
