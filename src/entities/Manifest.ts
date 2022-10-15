@@ -2,6 +2,7 @@ import axios from 'axios';
 import { Octokit } from 'octokit';
 
 export class ConflictError extends Error {}
+export class FlagNotFoundError extends Error {}
 
 export class Manifest {
   public id?: string;
@@ -45,6 +46,16 @@ export class Manifest {
       });
       this.id = created.data.id;
     }
+
+    return this;
+  }
+
+  public updateFlag(flag: string, enabled: boolean): Manifest {
+    if (typeof this.flags[flag] === 'undefined') {
+      throw new FlagNotFoundError();
+    }
+
+    this.flags[flag] = enabled;
 
     return this;
   }
