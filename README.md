@@ -1,3 +1,3 @@
-# Toggle Maestro Server
+# Toggle Maestro
 
-## Toggle those features, with finesse
+_Toggle those features, with finesse_
