@@ -1,11 +1,5 @@
-export class AuthorizationError extends Error {}
+import { ulid } from 'ulid';
 
 export class Session {
-  constructor(public githubToken?: string) {}
-
-  public authorize(): string {
-    if (!this.githubToken) throw new AuthorizationError();
-
-    return this.githubToken;
-  }
+  public id = ulid();
 }
