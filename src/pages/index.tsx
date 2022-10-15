@@ -1,9 +1,9 @@
-import axios from 'axios';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
 import { useCallback, useState } from 'react';
 import styles from '../styles/Home.module.css';
+import { client } from '../utils/apiClient';
 import { Config } from '../utils/config';
 
 export interface OAuthSuccessMessage {
@@ -43,11 +43,7 @@ const Home: NextPage = () => {
 
   const [value, setValue] = useState('');
   const save = useCallback(async () => {
-    await axios.post(
-      '/api/manifest',
-      { id: value },
-      { headers: { authorization: `Bearer ${localStorage.getItem('token')}` } }
-    );
+    await client.post('/manifest', { id: value });
     setValue('');
   }, [value]);
 
