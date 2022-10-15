@@ -8,7 +8,7 @@ export class Manifest {
 
   public flags: { [flag: string]: boolean } = {};
 
-  public createFlag(flag: string): Manifest {
+  public createFlag(flag: string): this {
     if (typeof this.flags[flag] !== 'undefined') {
       throw new ConflictError();
     }
@@ -18,6 +18,33 @@ export class Manifest {
     }
 
     this.flags[flag] = false;
+
+    return this;
+  }
+
+  public async write(token: string): Promise<this> {
+    const github = new Octokit({ auth: token });
+
+    if (this.id) {
+      await github.rest.gists.update({
+        files: {
+          [Manifest.MANIFEST_NAME]: {
+            content: JSON.stringify(this.flags),
+          },
+        },
+        gist_id: this.id,
+      });
+    } else {
+      const created = await github.rest.gists.create({
+        description: Manifest.MANIFEST_NAME,
+        files: {
+          [Manifest.MANIFEST_NAME]: {
+            content: JSON.stringify(this.flags),
+          },
+        },
+      });
+      this.id = created.data.id;
+    }
 
     return this;
   }

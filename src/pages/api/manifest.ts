@@ -20,5 +20,6 @@ export default nc()
 
     const manifest = await Manifest.getManifest(req.session);
     manifest.createFlag(id);
+    await manifest.write(req.session);
     res.send(manifest);
   });
