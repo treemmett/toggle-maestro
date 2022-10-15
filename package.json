@@ -2,6 +2,7 @@
   "name": "toggle-maestro-server",
   "version": "0.1.0",
   "private": true,
+  "description": "Toggle those features, with finesse",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
