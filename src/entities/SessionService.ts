@@ -8,7 +8,6 @@ export class SessionService extends Session {
 
   constructor(req: NextApiRequest) {
     super();
-
     const bearer = req.headers.authorization?.split(' ');
 
     if (!bearer || bearer[0]?.toLowerCase() !== 'bearer' || typeof bearer[1] !== 'string') {
@@ -16,6 +15,7 @@ export class SessionService extends Session {
     }
 
     const [, token] = bearer;
+    this.accessToken = token;
     this.githubToken = token;
   }
 

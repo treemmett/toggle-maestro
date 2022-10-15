@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { Session } from '../../entities/Session';
 import { Config } from '../../utils/config';
 import { nc } from '../../utils/nc';
 
@@ -35,8 +36,8 @@ export default nc().post(async (req, res) => {
     throw new AuthenticationError(authResponse.data.error);
   }
 
+  const session = new Session(authResponse.data.access_token);
+
   // TODO encrypt access key
-  res.send({
-    accessToken: authResponse.data.access_token,
-  });
+  res.send(session);
 });

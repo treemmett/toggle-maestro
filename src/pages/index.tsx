@@ -4,7 +4,7 @@ import { useCallback, useState } from 'react';
 import { List } from '../components/List';
 import styles from '../styles/Home.module.css';
 import { client } from '../utils/apiClient';
-import { Config } from '../utils/config';
+import { useSession } from '../utils/fetchers';
 
 export interface OAuthSuccessMessage {
   type: 'OAUTH_CODE';
@@ -21,25 +21,7 @@ export interface OAuthCloseMessage {
 }
 
 const Home: NextPage = () => {
-  const [authorizing, setAuthorizing] = useState(false);
-
-  const login = useCallback(() => {
-    if (authorizing) return;
-    setAuthorizing(true);
-
-    const popup = window.open(
-      `https://github.com/login/oauth/authorize?client_id=${Config.NEXT_PUBLIC_GITHUB_CLIENT_ID}&scope=gist`,
-      'oauth',
-      `popup,width=500,height=750,left=${global.screen.width / 2 - 250}`
-    );
-
-    const intervalId = setInterval(() => {
-      if (!popup || popup.closed) {
-        setAuthorizing(false);
-        clearInterval(intervalId);
-      }
-    }, 100);
-  }, [authorizing]);
+  const { session, authenticating, login } = useSession();
 
   const [value, setValue] = useState('');
   const save = useCallback(async () => {
@@ -55,19 +37,21 @@ const Home: NextPage = () => {
         <link href="/favicon.ico" rel="icon" />
       </Head>
 
-      <main className={styles.main}>
-        <button disabled={authorizing} onClick={login} type="button">
-          Login with GitHub
-        </button>
-
-        <input onChange={(e) => setValue(e.currentTarget.value)} value={value} />
-
-        <button onClick={save} type="button">
-          Save
-        </button>
-
-        <List />
-      </main>
+      {session.accessToken ? (
+        <main className={styles.main}>
+          <input onChange={(e) => setValue(e.currentTarget.value)} value={value} />
+          <button onClick={save} type="button">
+            Save
+          </button>
+          <List />
+        </main>
+      ) : (
+        <main className={styles.main}>
+          <button disabled={authenticating} onClick={login} type="button">
+            Login with GitHub
+          </button>
+        </main>
+      )}
     </div>
   );
 };
