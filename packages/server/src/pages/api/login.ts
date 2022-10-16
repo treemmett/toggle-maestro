@@ -1,6 +1,4 @@
-import axios from 'axios';
-import { Session } from '../../entities/Session';
-import { Config } from '../../utils/config';
+import { SessionService } from '../../entities/SessionService';
 import { nc } from '../../utils/nc';
 
 export class AuthenticationError extends Error {}
@@ -18,26 +16,6 @@ export interface GitHubAccessToken {
 }
 
 export default nc().post(async (req, res) => {
-  const authResponse = await axios.post<GitHubAuthError | GitHubAccessToken>(
-    'https://github.com/login/oauth/access_token',
-    {
-      client_id: Config.NEXT_PUBLIC_GITHUB_CLIENT_ID,
-      client_secret: Config.GITHUB_CLIENT_SECRET,
-      code: req.body.code,
-    },
-    { headers: { Accept: 'application/json' }, validateStatus: () => true }
-  );
-
-  if (authResponse.status !== 200) {
-    throw new AuthenticationError();
-  }
-
-  if ('error' in authResponse.data) {
-    throw new AuthenticationError(authResponse.data.error);
-  }
-
-  const session = new Session(authResponse.data.access_token);
-
-  // TODO encrypt access key
+  const session = await SessionService.login(req.body.code);
   res.send(session);
 });
