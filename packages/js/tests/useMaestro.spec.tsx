@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 import React, { FC } from 'react';
-import { Provider } from '../src/Provider';
+import { Provider } from '../src/MaestroProvider';
 import '@testing-library/jest-dom';
 import { useMaestro } from '../src/useMaestro';
 
