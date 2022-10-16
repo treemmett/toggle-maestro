@@ -5,7 +5,7 @@ import '@testing-library/jest-dom';
 import { useMaestro } from '../src/useMaestro';
 
 describe('useMaestro hook', () => {
-  test('renders true flags', () => {
+  it('renders true flags', () => {
     const C: FC = () => {
       const enabled = useMaestro('bar');
 
@@ -15,7 +15,7 @@ describe('useMaestro hook', () => {
     expect(getByText("It's true")).toBeInTheDocument();
   });
 
-  test('renders false flags', () => {
+  it('renders false flags', () => {
     const C: FC = () => {
       const enabled = useMaestro('foo');
 
@@ -23,5 +23,19 @@ describe('useMaestro hook', () => {
     };
     const { getByText } = render(<C />);
     expect(getByText("It's false")).toBeInTheDocument();
+  });
+
+  it('displays missing flag message', () => {
+    const logSpy = jest.spyOn(console, 'warn');
+    const C: FC = () => {
+      const enabled = useMaestro('foobar');
+
+      return <Provider>{enabled ? <div>It's true</div> : <div>It's false</div>}</Provider>;
+    };
+    const { getByText } = render(<C />);
+    expect(getByText("It's false")).toBeInTheDocument();
+    expect(logSpy).toHaveBeenCalledWith(
+      `Maestro - flag 'foobar' not found in manifest.\n\nThis is a development message, and will not appear in production.`
+    );
   });
 });
