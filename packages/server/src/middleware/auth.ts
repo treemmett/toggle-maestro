@@ -7,7 +7,7 @@ export interface AuthenticatedRequest extends NextApiRequest {
 }
 
 export const authenticate =
-  (): Middleware<AuthenticatedRequest, NextApiResponse> => (req, res, next) => {
-    req.session = new SessionService(req);
+  (): Middleware<AuthenticatedRequest, NextApiResponse> => async (req, res, next) => {
+    req.session = await SessionService.authenticate(req);
     next();
   };
