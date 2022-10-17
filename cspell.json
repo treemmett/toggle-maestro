@@ -4,6 +4,7 @@
   "dictionaryDefinitions": [],
   "dictionaries": ["typescript"],
   "words": [
+    "codecov",
     "commitlint",
     "csstree",
     "lcov",
