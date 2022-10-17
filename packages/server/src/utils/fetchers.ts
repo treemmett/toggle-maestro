@@ -35,7 +35,28 @@ export const useManifest = () => {
     [data, mutate]
   );
 
+  const addFlag = useCallback(
+    async (name: string) => {
+      const clone = plainToClass(Manifest, data);
+      const optimisticData = clone.createFlag(name);
+
+      await mutate(
+        async () => {
+          const updated = await client.post('/manifest', { id: name });
+          return plainToClass(Manifest, updated.data);
+        },
+        {
+          optimisticData,
+          revalidate: false,
+          rollbackOnError: true,
+        }
+      );
+    },
+    [data, mutate]
+  );
+
   return {
+    addFlag,
     data,
     error,
     updateFlag,

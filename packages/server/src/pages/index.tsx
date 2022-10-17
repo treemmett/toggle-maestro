@@ -1,9 +1,7 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import { useCallback, useState } from 'react';
 import { List } from '../components/List';
 import styles from '../styles/Home.module.css';
-import { client } from '../utils/apiClient';
 import { useSession } from '../utils/fetchers';
 
 export interface OAuthSuccessMessage {
@@ -23,12 +21,6 @@ export interface OAuthCloseMessage {
 const Home: NextPage = () => {
   const { session, authenticating, login } = useSession();
 
-  const [value, setValue] = useState('');
-  const save = useCallback(async () => {
-    await client.post('/manifest', { id: value });
-    setValue('');
-  }, [value]);
-
   return (
     <div className={styles.container}>
       <Head>
@@ -39,10 +31,6 @@ const Home: NextPage = () => {
 
       {session.accessToken ? (
         <main className={styles.main}>
-          <input onChange={(e) => setValue(e.currentTarget.value)} value={value} />
-          <button onClick={save} type="button">
-            Save
-          </button>
           <List />
         </main>
       ) : (
