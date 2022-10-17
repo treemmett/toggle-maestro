@@ -44,13 +44,20 @@ export const useManifest = () => {
 
 export const useSession = () => {
   const [session, setSession] = useState(new Session());
-  const [authenticating, setAuthenticating] = useState(false);
+  const [authenticating, setAuthenticating] = useState(true);
 
-  const checkSession = useCallback(() => {
+  const checkSession = useCallback(async () => {
+    setAuthenticating(true);
     const token = localStorage.getItem('token');
     if (token) {
-      setSession(new Session(token));
+      const { data } = await client.get('/login');
+      if (data.success) {
+        setSession(new Session(token));
+      } else {
+        localStorage.removeItem('token');
+      }
     }
+    setAuthenticating(false);
   }, []);
 
   const login = useCallback(() => {

@@ -15,7 +15,11 @@ export interface GitHubAccessToken {
   token_type: string;
 }
 
-export default nc().post(async (req, res) => {
-  const session = await SessionService.login(req.body.code);
-  res.send(session);
-});
+export default nc()
+  .get((req, res) => {
+    res.send({ success: !!req.session?.githubToken });
+  })
+  .post(async (req, res) => {
+    const session = await SessionService.login(req.body.code);
+    res.send(session);
+  });
