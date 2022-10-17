@@ -33,18 +33,23 @@ export class SessionService extends Session {
   }
 
   public static async authenticate(req: NextApiRequest): Promise<SessionService> {
-    const bearer = req.headers.authorization?.split(' ');
-
     const session = new SessionService();
 
-    if (!bearer || bearer[0]?.toLowerCase() !== 'bearer' || typeof bearer[1] !== 'string') {
-      return session;
+    try {
+      const bearer = req.headers.authorization?.split(' ');
+
+      if (!bearer || bearer[0]?.toLowerCase() !== 'bearer' || typeof bearer[1] !== 'string') {
+        return session;
+      }
+
+      const [, token] = bearer;
+      const jwt = await jwtDecrypt(token, Buffer.from(Config.JWT_KEY, 'hex'));
+      session.accessToken = token;
+      session.githubToken = jwt.payload.accessToken as string;
+    } catch {
+      // shrug
     }
 
-    const [, token] = bearer;
-    const jwt = await jwtDecrypt(token, Buffer.from(Config.JWT_KEY, 'hex'));
-    session.accessToken = token;
-    session.githubToken = jwt.payload.accessToken as string;
     return session;
   }
 }
