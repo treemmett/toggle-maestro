@@ -57,6 +57,7 @@
 .input-wrapper {
   @include card;
 
+  display: flex;
   min-height: 3rem;
   border: 1px solid #eaeaea;
 
@@ -74,4 +75,9 @@
     line-height: inherit;
     outline: none;
   }
+}
+
+.button {
+  width: 3rem;
+  margin: 1rem;
 }

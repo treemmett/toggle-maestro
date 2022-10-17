@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import Plus from '../icons/plus.svg';
 import { useManifest } from '../utils/fetchers';
 import styles from './List.module.scss';
 
@@ -15,9 +16,12 @@ export const List: FC = () => {
 
   return (
     <>
-      <div className={styles['input-wrapper']}>
+      <form className={styles['input-wrapper']}>
         <input aria-label="New Flag" placeholder="New Flag" />
-      </div>
+        <button className={styles.button} type="submit">
+          <Plus />
+        </button>
+      </form>
       {Object.entries(data.flags).map(([flag, enabled]) => (
         <label className={styles.card} htmlFor={`flag-${flag}`} key={flag}>
           <span>{flag}</span>
