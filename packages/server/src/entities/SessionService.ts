@@ -2,9 +2,8 @@ import { EncryptJWT, jwtDecrypt } from 'jose';
 import { NextApiRequest } from 'next';
 import { OAuthApp } from 'octokit';
 import { Config } from '../utils/config';
+import { AuthorizationError } from '../utils/errors';
 import { Session } from './Session';
-
-export class AuthorizationError extends Error {}
 
 export class SessionService extends Session {
   public githubToken?: string;

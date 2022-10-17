@@ -1,8 +1,7 @@
 import { ManifestService } from '../../../entities/ManifestService';
+import { BadUserInput, MissingUserInput } from '../../../utils/errors';
 import { nc } from '../../../utils/nc';
 import { toString } from '../../../utils/query';
-
-export class BadUserInput extends Error {}
 
 export default nc().patch(async (req, res) => {
   const token = req.session.authorize();
@@ -10,7 +9,8 @@ export default nc().patch(async (req, res) => {
   const flag = toString(req.query.flag);
   const { enabled } = req.body;
 
-  if (!flag) throw new BadUserInput();
+  if (!flag) throw new MissingUserInput();
+  if (typeof enabled === 'undefined') throw new MissingUserInput();
   if (typeof enabled !== 'boolean') throw new BadUserInput();
 
   const manifest = await ManifestService.getManifest(token);

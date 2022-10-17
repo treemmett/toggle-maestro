@@ -1,5 +1,4 @@
-export class ConflictError extends Error {}
-export class FlagNotFoundError extends Error {}
+import { ConflictError, FlagNotFoundError } from '../utils/errors';
 
 export class Manifest {
   public id?: string;
