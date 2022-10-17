@@ -11,6 +11,7 @@
     "lcov",
     "postcoverage",
     "stylelint",
+    "svgr",
     "treemmett",
     "tregan",
     "tsbuildinfo",
