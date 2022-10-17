@@ -6,7 +6,7 @@ export const List: FC = () => {
   const { data, error, updateFlag } = useManifest();
 
   if (error) {
-    return <div>An error occurred</div>;
+    return <div>{error.message}</div>;
   }
 
   if (!data) {

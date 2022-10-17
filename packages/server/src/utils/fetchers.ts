@@ -5,9 +5,10 @@ import { Manifest } from '../entities/Manifest';
 import { Session } from '../entities/Session';
 import { client } from './apiClient';
 import { Config } from './config';
+import { APIError } from './errors';
 
 export const useManifest = () => {
-  const { data, error, mutate } = useSWR('manifest', async () => {
+  const { data, error, mutate } = useSWR<Manifest, APIError>('manifest', async () => {
     const response = await client.get<Manifest>('/manifest');
     return plainToClass(Manifest, response.data);
   });
