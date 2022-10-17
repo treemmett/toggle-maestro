@@ -6,7 +6,7 @@ import { render, waitFor } from './test-util';
 describe('useMaestro hook', () => {
   it('renders true flags', async () => {
     const C: FC = () => {
-      const enabled = useMaestro('bruh');
+      const enabled = useMaestro('feature-2');
 
       return enabled ? <div>It's true</div> : <div>It's false</div>;
     };
@@ -16,7 +16,7 @@ describe('useMaestro hook', () => {
 
   it('renders false flags', async () => {
     const C: FC = () => {
-      const enabled = useMaestro('wow');
+      const enabled = useMaestro('feature-1');
 
       return enabled ? <div>It's true</div> : <div>It's false</div>;
     };
