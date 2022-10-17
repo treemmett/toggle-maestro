@@ -14,7 +14,10 @@ export const List: FC = () => {
   }
 
   return (
-    <div className={styles.grid}>
+    <>
+      <div className={styles['input-wrapper']}>
+        <input aria-label="New Flag" placeholder="New Flag" />
+      </div>
       {Object.entries(data.flags).map(([flag, enabled]) => (
         <label className={styles.card} htmlFor={`flag-${flag}`} key={flag}>
           <span>{flag}</span>
@@ -26,6 +29,6 @@ export const List: FC = () => {
           />
         </label>
       ))}
-    </div>
+    </>
   );
 };

@@ -1,3 +1,32 @@
+@mixin inner-card {
+  padding: 1.5rem;
+}
+
+@mixin card {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  border: 1px solid #eaeaea;
+  border-radius: 10px;
+  margin: 1rem;
+  color: inherit;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  transition: color 0.15s ease, border-color 0.15s ease;
+
+  &:hover,
+  &:focus,
+  &:active,
+  &:focus-within {
+    border-color: #0070f3;
+    color: #0070f3;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    border-color: #222;
+  }
+}
+
 .list {
   display: flex;
   max-width: 800px;
@@ -12,32 +41,37 @@
 }
 
 .card {
-  max-width: 300px;
-  padding: 1.5rem;
-  border: 1px solid #eaeaea;
-  border-radius: 10px;
-  margin: 1rem;
-  color: inherit;
+  @include card;
+  @include inner-card;
+
   cursor: pointer;
   list-style: none;
   text-align: left;
   text-decoration: none;
-  transition: color 0.15s ease, border-color 0.15s ease;
+
+  span {
+    margin: 0;
+  }
+}
+
+.input-wrapper {
+  @include card;
+
+  min-height: 3rem;
+  border: 1px solid #eaeaea;
 
   @media (prefers-color-scheme: dark) {
     border-color: #222;
   }
 
-  &:hover,
-  &:focus,
-  &:active {
-    border-color: #0070f3;
-    color: #0070f3;
-  }
+  input {
+    @include inner-card;
 
-  span {
-    margin: 0;
-    font-size: 1.25rem;
-    line-height: 1.5;
+    width: 100%;
+    border: none;
+    background-color: transparent;
+    font-size: inherit;
+    line-height: inherit;
+    outline: none;
   }
 }
