@@ -13,4 +13,7 @@ export default nc()
     manifest.createFlag(id);
     await manifest.write(req.session.authorize());
     res.send(manifest);
+  })
+  .options((req, res) => {
+    res.setHeader('Allow', 'OPTIONS, GET, POST').end();
   });
