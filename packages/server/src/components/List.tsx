@@ -25,8 +25,8 @@ export const List: FC = () => {
   }
 
   return (
-    <>
-      <form className={styles['input-wrapper']} onSubmit={formHandler}>
+    <main className={styles.list}>
+      <form className={styles.form} onSubmit={formHandler}>
         <input
           aria-label="New Flag"
           onChange={(e) => setNewValue(e.currentTarget.value)}
@@ -48,6 +48,6 @@ export const List: FC = () => {
           />
         </label>
       ))}
-    </>
+    </main>
   );
 };

@@ -33,6 +33,7 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
+  margin: 0 auto;
 
   @media (max-width: 600px) {
     width: 100%;
@@ -54,15 +55,20 @@
   }
 }
 
-.input-wrapper {
+.form {
   @include card;
 
+  position: sticky;
+  z-index: 1;
+  top: 0;
   display: flex;
   min-height: 3rem;
   border: 1px solid #eaeaea;
+  background-color: white;
 
   @media (prefers-color-scheme: dark) {
     border-color: #222;
+    background-color: black;
   }
 
   input {

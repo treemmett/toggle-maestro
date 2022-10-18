@@ -30,9 +30,7 @@ const Home: NextPage = () => {
       </Head>
 
       {session.accessToken ? (
-        <main className={styles.main}>
-          <List />
-        </main>
+        <List />
       ) : (
         <main className={styles.main}>
           <button disabled={authenticating} onClick={login} type="button">
