@@ -4,6 +4,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
+    "bootstrap": "lerna bootstrap --npm-client yarn",
     "build": "lerna run build",
     "test": "lerna run test --",
     "coverage": "yarn test --coverage",
