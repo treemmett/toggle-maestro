@@ -6,7 +6,7 @@
     "react/jsx-key": 2,
     "import/no-extraneous-dependencies": [
       "error",
-      { "devDependencies": ["**/tests/**", "**/webpack*.ts"] }
+      { "devDependencies": ["**/tests/**", "**/webpack*.ts", "**/rollup.config.ts"] }
     ],
     "no-underscore-dangle": [2, { "allow": ["__MAESTRO_EXTENSION_MANIFEST__"] }]
   }
