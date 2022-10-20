@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 import '@testing-library/jest-dom';
 import { useMaestro } from '../src/useMaestro';
 import { render, waitFor } from './test-util';

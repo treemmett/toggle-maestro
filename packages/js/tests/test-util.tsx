@@ -1,4 +1,4 @@
-import { render, RenderOptions } from '@testing-library/react';
+import React, { render, RenderOptions } from '@testing-library/react';
 import { FC, PropsWithChildren, ReactElement } from 'react';
 import { MaestroProvider } from '../src/MaestroProvider';
 

@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren, useCallback, useEffect, useState } from 'react';
+import React, { FC, PropsWithChildren, useCallback, useEffect, useState } from 'react';
 import { Manifest } from './entities/Manifest';
 import { maestroContext } from './maestroContext';
 

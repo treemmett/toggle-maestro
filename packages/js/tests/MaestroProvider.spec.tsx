@@ -1,4 +1,4 @@
-import { render, waitFor } from '@testing-library/react';
+import React, { render, waitFor } from '@testing-library/react';
 import { MaestroProvider } from '../src/MaestroProvider';
 import '@testing-library/jest-dom';
 
