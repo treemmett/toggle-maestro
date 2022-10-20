@@ -12,6 +12,7 @@
     "prepare": "husky install"
   },
   "workspaces": [
+    "examples/*",
     "packages/*"
   ],
   "devDependencies": {
