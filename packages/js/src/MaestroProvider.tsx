@@ -8,12 +8,18 @@ export interface MaestroProviderProps extends PropsWithChildren {
    * Broadcast manifest load, and accept global event listeners
    */
   enableExtension?: boolean;
+  /**
+   * Hostname to Maestro API server
+   * @default http://localhost:3000/api
+   */
+  hostname?: string;
 }
 
 export const MaestroProvider: FC<MaestroProviderProps> = ({
   accessToken,
   enableExtension,
   children,
+  hostname = 'http://localhost:3000/api',
 }) => {
   const [manifest, setManifest] = useState(new Manifest());
 
@@ -24,7 +30,7 @@ export const MaestroProvider: FC<MaestroProviderProps> = ({
   }, [enableExtension, manifest]);
 
   const loadManifest = useCallback(async () => {
-    const m: Manifest = await fetch('http://localhost:3000/api/manifest', {
+    const m: Manifest = await fetch(`${hostname}/manifest`, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
@@ -32,7 +38,7 @@ export const MaestroProvider: FC<MaestroProviderProps> = ({
     }).then((r) => r.json());
 
     setManifest(m);
-  }, [accessToken]);
+  }, [accessToken, hostname]);
 
   useEffect(() => {
     loadManifest();
