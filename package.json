@@ -10,7 +10,7 @@
     "coverage": "yarn test --coverage",
     "postcoverage": "ts-node scripts/coverage && nyc report --reporter lcov",
     "lint": "lerna run lint",
-    "prepare": "husky install"
+    "prepare": "husky install && yarn bootstrap"
   },
   "workspaces": [
     "examples/*",
