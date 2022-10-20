@@ -7,7 +7,7 @@ import App from './App';
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <React.StrictMode>
-    <MaestroProvider accessToken={process.env.REACT_APP_MAESTRO_KEY as string}>
+    <MaestroProvider accessToken={process.env.REACT_APP_MAESTRO_KEY as string} enableExtension>
       <App />
     </MaestroProvider>
   </React.StrictMode>
