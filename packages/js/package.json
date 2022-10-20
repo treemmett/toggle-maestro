@@ -1,11 +1,12 @@
 {
   "name": "toggle-maestro",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "description": "Toggle those features, with finesse",
-  "repository": "https://github.com/github:treemmett/toggle-maestro",
-  "author": "Tregan <tregan@tregan.me>",
   "license": "MIT",
-  "private": true,
+  "author": "Tregan <tregan@tregan.me> (https://github.com/treemmett)",
+  "repository": "github:treemmett/toggle-maestro",
+  "homepage": "https://github.com/treemmett/toggle-maestro",
+  "bugs": "https://github.com/treemmett/toggle-maestro/issues",
   "main": "./lib/index.js",
   "types": "./es/src/index.d.ts",
   "unpkg": "dist/toggle-maestro.js",
@@ -25,7 +26,8 @@
     "build:types": "tsc",
     "build": "yarn build:types && yarn build:commonjs && yarn build:es && yarn build:umd && yarn build:umd:min",
     "clean": "rimraf lib dist es coverage",
-    "test": "jest"
+    "test": "jest",
+    "prepare": "yarn build"
   },
   "devDependencies": {
     "@babel/cli": "^7.19.3",
