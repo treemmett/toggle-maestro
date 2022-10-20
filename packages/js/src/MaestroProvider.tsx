@@ -4,10 +4,24 @@ import { maestroContext } from './maestroContext';
 
 export interface MaestroProviderProps extends PropsWithChildren {
   accessToken: string;
+  /**
+   * Broadcast manifest load, and accept global event listeners
+   */
+  enableExtension?: boolean;
 }
 
-export const MaestroProvider: FC<MaestroProviderProps> = ({ accessToken, children }) => {
+export const MaestroProvider: FC<MaestroProviderProps> = ({
+  accessToken,
+  enableExtension,
+  children,
+}) => {
   const [manifest, setManifest] = useState(new Manifest());
+
+  useEffect(() => {
+    if (enableExtension) {
+      window.__MAESTRO_EXTENSION_MANIFEST__ = manifest;
+    }
+  }, [enableExtension, manifest]);
 
   const loadManifest = useCallback(async () => {
     const m: Manifest = await fetch('http://localhost:3000/api/manifest', {

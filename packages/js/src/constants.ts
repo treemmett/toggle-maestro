@@ -1,0 +1,1 @@
+export const EXTENSION_KEY = '__MAESTRO_EXTENSION_MANIFEST__';

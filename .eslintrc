@@ -7,6 +7,7 @@
     "import/no-extraneous-dependencies": [
       "error",
       { "devDependencies": ["**/tests/**", "**/webpack*.ts"] }
-    ]
+    ],
+    "no-underscore-dangle": [2, { "allow": ["__MAESTRO_EXTENSION_MANIFEST__"] }]
   }
 }
