@@ -30,12 +30,24 @@ export const MaestroProvider: FC<MaestroProviderProps> = ({
   }, [enableExtension, manifest]);
 
   const loadManifest = useCallback(async () => {
-    const m: Manifest = await fetch(`${hostname}/manifest`, {
+    const response = await fetch(`${hostname}/manifest`, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
       method: 'GET',
-    }).then((r) => r.json());
+    }).catch(() => ({ error: true }));
+
+    if ('error' in response) {
+      console.error('Network error connecting to Maestro');
+      return;
+    }
+
+    if (response.status >= 300) {
+      console.error('Maestro key invalid');
+      return;
+    }
+
+    const m: Manifest = await response.json();
 
     setManifest(m);
   }, [accessToken, hostname]);
