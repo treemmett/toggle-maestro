@@ -41,6 +41,7 @@ const config: Configuration = {
           from: `${browser}_manifest.json`,
           to: `../${BUILD_DIR_NAME}/manifest.json`,
         },
+        { from: '../../node_modules/webextension-polyfill/dist/browser-polyfill.js' },
       ],
     }),
   ],
