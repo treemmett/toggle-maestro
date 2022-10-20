@@ -12,4 +12,15 @@ chrome.runtime.onInstalled.addListener(() => {
   });
 });
 
-export {};
+export async function main() {
+  chrome.tabs.query({ active: true, currentWindow: true }, ([tab]) => {
+    if (!tab?.id) return;
+
+    chrome.scripting.executeScript({
+      files: ['content.js'],
+      target: { tabId: tab.id },
+    });
+  });
+}
+
+main();

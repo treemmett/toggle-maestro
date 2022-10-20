@@ -9,6 +9,7 @@ const SRC_DIR_NAME = 'src';
 const config: Configuration = {
   entry: {
     background: path.join(__dirname, `../${SRC_DIR_NAME}/background/${browser}/background.ts`),
+    content: path.join(__dirname, `../${SRC_DIR_NAME}/content.ts`),
     popup: path.join(__dirname, `../${SRC_DIR_NAME}/popup.ts`),
   },
   module: {

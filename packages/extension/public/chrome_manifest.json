@@ -2,10 +2,11 @@
   "name": "Toggle Maestro",
   "version": "1.0",
   "description": "Toggle those features, with finesse",
-  "permissions": ["declarativeContent"],
+  "permissions": ["activeTab", "declarativeContent", "scripting"],
+  "host_permissions": ["http://*/*", "https://*/*"],
   "manifest_version": 3,
   "background": {
-    "service_worker": ["browser-polyfill.js", "background.js"]
+    "service_worker": "background.js"
   },
   "action": {
     "default_popup": "popup.html",
